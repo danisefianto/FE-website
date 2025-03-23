@@ -46,10 +46,10 @@
 
 /* Custom button styling */
 .btn-primary {
-    background-color: #0066ff;
-    border-color: #0066ff;
+    background-color: rgba(0, 97, 255, 1);
+    border-color: rgba(0, 97, 255, 1);
     padding: 0.6rem 1rem;
-    font-weight: 500;
+    font-weight: 1000;
 }
 
 .btn-primary:hover {
@@ -57,12 +57,10 @@
     border-color: #0055d4;
 }
 
-
 /* Style placeholder di form login */
 .login-form-container input::placeholder {
     font-family: 'Open Sans', sans-serif;
-    font-weight: 500;
-
+    font-weight: 600;
 }
 
 /* font isi juga open sans */
@@ -70,10 +68,30 @@
     font-family: 'Open Sans', sans-serif;
 }
 
+/* Style  input fields  */
+.login-form-container .form-control {
+    border: none;
+    background-color: rgba(250, 251, 253, 1);
+    padding: 12px 15px;
+    border-radius: 8px;
+}
+
+/* Style saat input mendapat fokus */
+.login-form-container .form-control:focus {
+    box-shadow: none;
+    outline: none;
+    background-color: rgba(250, 251, 253, 1);
+    border: none;
+}
+
+/* nothing outline browser */
+.login-form-container .form-control:focus-visible {
+    outline: none;
+}
+
 /* Responsive adjustments */
-@media (max-width: 767.98px) {
+@media (max-width: 767px) {
     .login-card {
         max-width: 100%;
     }
-
 }

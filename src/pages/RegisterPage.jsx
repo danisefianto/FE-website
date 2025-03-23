@@ -1,13 +1,14 @@
-
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Card, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import '../styles/LoginPage.css';
 import logoImage from '../assets/logo.png';
 
-const LoginPage = () => {
+const RegisterPage = () => {
+    const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -15,8 +16,8 @@ const LoginPage = () => {
         e.preventDefault();
 
         // Basic validation
-        if (!email || !password) {
-            setError('Email dan password diperlukan');
+        if (!fullName || !email || !password || !phoneNumber) {
+            setError('Semua field harus diisi');
             return;
         }
 
@@ -24,18 +25,18 @@ const LoginPage = () => {
         setLoading(true);
 
         try {
-            // Di sini nanti akan ada panggilan API untuk login
-            console.log('Login dengan:', { email, password });
+            // API untuk register
+            console.log('Register dengan:', { fullName, email, password, phoneNumber });
 
-            // Simulasi delay untuk demo
+            // delay demo
             await new Promise(resolve => setTimeout(resolve, 1000));
 
-            // Redirect ke dashboard (nanti akan diganti dengan react-router)
-            alert('Login berhasil!');
+            // Redirect ke login 
+            alert('Registrasi berhasil! Silakan login.');
 
         } catch (error) {
-            setError('Login gagal. Periksa email dan password Anda.');
-            console.error('Login error:', error);
+            setError('Registrasi gagal. Silakan coba lagi.');
+            console.error('Register error:', error);
         } finally {
             setLoading(false);
         }
@@ -44,19 +45,28 @@ const LoginPage = () => {
     return (
         <Container fluid className="login-container p-0">
             <Row className="h-100 m-0">
-                {/* Left side - Login Form */}
+                {/* Left side - Register Form */}
                 <Col md={6} className="login-form-container d-flex align-items-center justify-content-center">
                     <Card className="login-card border-0 shadow">
                         <Card.Body className="p-4 p-md-5">
                             <div className="text-center mb-4">
                                 <img src={logoImage} alt="E-Wallet Logo" className="logo mb-4" />
-
-
                             </div>
 
                             {error && <Alert variant="danger">{error}</Alert>}
 
                             <Form onSubmit={handleSubmit}>
+                                <Form.Group className="mb-3" controlId="formFullName">
+
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Nama Lengkap"
+                                        value={fullName}
+                                        onChange={(e) => setFullName(e.target.value)}
+                                        required
+                                    />
+                                </Form.Group>
+
                                 <Form.Group className="mb-3" controlId="formEmail">
 
                                     <Form.Control
@@ -68,17 +78,27 @@ const LoginPage = () => {
                                     />
                                 </Form.Group>
 
-                                <Form.Group className="mb-4" controlId="formPassword">
+                                <Form.Group className="mb-3" controlId="formPassword">
 
                                     <Form.Control
                                         type="password"
-                                        placeholder="password"
+                                        placeholder="Password"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                         required
                                     />
                                 </Form.Group>
 
+                                <Form.Group className="mb-4" controlId="formPhoneNumber">
+
+                                    <Form.Control
+                                        type="tel"
+                                        placeholder="No Hp"
+                                        value={phoneNumber}
+                                        onChange={(e) => setPhoneNumber(e.target.value)}
+                                        required
+                                    />
+                                </Form.Group>
 
                                 <Button
                                     variant="primary"
@@ -86,11 +106,11 @@ const LoginPage = () => {
                                     className="w-100 mb-4"
                                     disabled={loading}
                                 >
-                                    {loading ? 'Memproses...' : 'Login'}
+                                    {loading ? 'Memproses...' : 'Daftar'}
                                 </Button>
 
-                                <p className="text-left mb-0">
-                                    Belum punya akun? <Link to="/register" className="text-decoration-none">Daftar di sini</Link>
+                                <p className="text-center mb-0">
+                                    Sudah punya akun? <Link to="/login" className="text-decoration-none">Login di sini</Link>
                                 </p>
                             </Form>
                         </Card.Body>
@@ -110,4 +130,4 @@ const LoginPage = () => {
     );
 };
 
-export default LoginPage;
+export default RegisterPage;
