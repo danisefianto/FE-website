@@ -1,0 +1,26 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.page-container {
+  flex: 1;
+  padding: 1rem;
+}
+
+/* Custom utility classes */
+.text-primary-custom {
+  color: #0066ff;
+}
+
+.bg-primary-custom {
+  background-color: #0066ff;
+}
+
+/* Card styling */
+.custom-card {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
